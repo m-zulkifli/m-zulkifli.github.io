@@ -32,12 +32,20 @@
                     <h2 class="text-info">Contact Us</h2>
                     <p>Untuk sementara halaman ini tidak berfungsi sampai designer website ini menemukan ilmunya hingga dapat membuat page ini berfungsi dengan baik. Mohon do'a restu dari semua pihak. Terima kasih.</p>
                 </div>
+                <div class="alert alert-warning alert-dismissible fade show d-none my-alert" role="alert">
+                    <strong>Thank You!</strong> Pesan meneh geus kakirim, Insyaa Allah.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
                 <form name="submit-to-google-sheet">
                     <div class="mb-3"><label class="form-label" for="name">Name</label><input class="form-control" type="text" id="name" name="name"></div>
                     <div class="mb-3"><label class="form-label" for="subject">Subject</label><input class="form-control" type="text" id="subject" name="subject"></div>
                     <div class="mb-3"><label class="form-label" for="email">Email</label><input class="form-control" type="email" id="email" name="email"></div>
                     <div class="mb-3"><label class="form-label" for="message">Message</label><textarea class="form-control" id="message" name="message"></textarea></div>
-                    <div class="mb-3"><button class="btn btn-primary" type="submit">Send</button></div>
+                    <div class="mb-3"><button class="btn btn-primary btn-submit" type="submit">Send</button></div>
+                    <button class="btn btn-primary btn-loading d-none" type="button" disabled>
+                        <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                        Loading...
+                      </button>
                 </form>
             </div>
         </section>
@@ -55,11 +63,21 @@
     <script>
         const scriptURL = 'https://script.google.com/macros/s/AKfycby49t3c5x5AyfJl7sSjmFlY-clGH9tHqqet9UNBukT4_yH50WPxNZTyjBuwBTbYnCQ/exec'
         const form = document.forms["submit-to-google-sheet"]
+        const btnSubmit = document.querySelector('.btn-submit')
+        const btnLoading = document.querySelector(".btn-loading")
+        const myAlert = document.querySelector('.my-alert')
       
         form.addEventListener('submit', e => {
           e.preventDefault()
+          btnLoading.classList.toggle('d-none')
+          btnSubmit.classList.toggle('d-none')
           fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-            .then(response => console.log('Success!', response))
+            .then(response =>{
+          btnLoading.classList.toggle('d-none')
+          btnSubmit.classList.toggle('d-none')
+          myAlert.classList.toggle("d-none") 
+          form.reset()
+          console.log('Success!', response)})
             .catch(error => console.error('Error!', error.message))
         })
       </script>
