@@ -30,7 +30,7 @@
             <div class="container">
                 <div class="block-heading">
                     <h2 class="text-info">Contact Us</h2>
-                    <p>Untuk sementara halaman ini tidak berfungsi sampai designer website ini menemukan ilmunya hingga dapat membuat page ini berfungsi dengan baik. Mohon do'a restu dari semua pihak. Terima kasih.</p>
+                    <p>For further information, please ulah ninggakeun pesan anda melalui form berikut.</p>
                 </div>
                 <div class="alert alert-warning alert-dismissible fade show d-none my-alert" role="alert">
                     <strong>Thank You!</strong> Pesan meneh geus kakirim, Insyaa Allah.
@@ -38,6 +38,7 @@
                   </div>
                 <form name="submit-to-google-sheet">
                     <div class="mb-3"><label class="form-label" for="name">Name</label><input class="form-control" type="text" id="name" name="name"></div>
+                    <div class="mb-3"><label class="form-label" for="phone">Phone</label><input class="form-control" type="number" id="phone" name="phone"></div>
                     <div class="mb-3"><label class="form-label" for="subject">Subject</label><input class="form-control" type="text" id="subject" name="subject"></div>
                     <div class="mb-3"><label class="form-label" for="email">Email</label><input class="form-control" type="email" id="email" name="email"></div>
                     <div class="mb-3"><label class="form-label" for="message">Message</label><textarea class="form-control" id="message" name="message"></textarea></div>
@@ -71,6 +72,7 @@
           e.preventDefault()
           btnLoading.classList.toggle('d-none')
           btnSubmit.classList.toggle('d-none')
+        
           fetch(scriptURL, { method: 'POST', body: new FormData(form)})
             .then(response =>{
           btnLoading.classList.toggle('d-none')
