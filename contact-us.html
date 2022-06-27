@@ -32,7 +32,7 @@
                     <h2 class="text-info">Contact Us</h2>
                     <p>Untuk sementara halaman ini tidak berfungsi sampai designer website ini menemukan ilmunya hingga dapat membuat page ini berfungsi dengan baik. Mohon do'a restu dari semua pihak. Terima kasih.</p>
                 </div>
-                <form>
+                <form name="submit-to-google-sheet">
                     <div class="mb-3"><label class="form-label" for="name">Name</label><input class="form-control" type="text" id="name" name="name"></div>
                     <div class="mb-3"><label class="form-label" for="subject">Subject</label><input class="form-control" type="text" id="subject" name="subject"></div>
                     <div class="mb-3"><label class="form-label" for="email">Email</label><input class="form-control" type="email" id="email" name="email"></div>
@@ -51,6 +51,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
     <script src="assets/js/vanilla-zoom.js"></script>
     <script src="assets/js/theme.js"></script>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycby49t3c5x5AyfJl7sSjmFlY-clGH9tHqqet9UNBukT4_yH50WPxNZTyjBuwBTbYnCQ/exec'
+        const form = document.forms["submit-to-google-sheet"]
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => console.log('Success!', response))
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
 </body>
 
 </html>
